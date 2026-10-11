@@ -2,7 +2,7 @@
 
 New updated version of my previous final project for System Analysis and Design, rebuilt as a veterinary clinic web application.
 
-**Live site:** https://carlosz98.github.io/pethome-vet/
+**Live site:** https://carlosz98.github.io/PetHome-Vet-Project/
 
 **Course:** MAC 272 Web Development 2, Prof. Samia Alblwi  
 **Author:** Carlos Zabala
