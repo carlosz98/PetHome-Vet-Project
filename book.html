@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Book a Visit · PetHome Vet</title>
+    <meta name="description" content="Book a vet appointment online at PetHome Veterinary Clinic: choose a service, a vet and a time.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@400..800&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <script>try{if(sessionStorage.getItem('pethome-wipe')){sessionStorage.removeItem('pethome-wipe');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('wipe-in')}}catch(e){}</script>
+    <script src="js/data.js" defer></script>
+    <script src="js/effects.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body data-page="book">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href="index.html" class="logo" aria-label="PetHome Veterinary Clinic, home">
+                <span class="logo-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.2" cy="5.2" r="2.2"/><circle cx="14.8" cy="5.2" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/><path d="M12 11.5c-2.6 0-5.8 3.2-5.8 5.8 0 1.8 1.4 2.7 2.9 2.7 1.3 0 1.9-.7 2.9-.7s1.6.7 2.9.7c1.5 0 2.9-.9 2.9-2.7 0-2.6-3.2-5.8-5.8-5.8Z"/></svg></span>
+                <span class="logo-text"><strong>PetHome</strong><small>Veterinary Clinic</small></span>
+            </a>
+            <nav id="site-nav" class="site-nav" aria-label="Main">
+                <ul>
+                    <li><a href="index.html" data-nav="home">Home</a></li>
+                    <li><a href="services.html" data-nav="services">Services</a></li>
+                    <li><a href="team.html" data-nav="team">Our Vets</a></li>
+                    <li><a href="about.html" data-nav="about">About</a></li>
+                    <li><a href="contact.html" data-nav="contact">Contact</a></li>
+                    <li class="nav-mobile-only"><a href="portal.html" data-nav="portal">My Pets</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a class="btn btn--ghost btn--sm" href="portal.html" data-nav="portal"><span data-icon="paw"></span>My Pets</a>
+                <a class="btn btn--orange btn--sm btn--pet" href="book.html" aria-label="Book a visit"><span data-icon="calendar"></span><span>Book a visit</span></a>
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero">
+            <div class="container">
+                <span class="eyebrow rise rise-1">Book a visit</span>
+                <h1 class="rise rise-2">Book an appointment</h1>
+                <p class="rise rise-3">Four short steps. Your spot is held as soon as you confirm, and you can cancel from My Pets up to 24 hours before.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:24px">
+            <div class="container booking-layout">
+                <div class="booking-main">
+                    <ol class="progress" aria-label="Booking steps">
+                        <li><span><span class="step-num">1</span><span class="step-label">Pet &amp; owner</span></span></li>
+                        <li><span><span class="step-num">2</span><span class="step-label">Service &amp; vet</span></span></li>
+                        <li><span><span class="step-num">3</span><span class="step-label">Date &amp; time</span></span></li>
+                        <li><span><span class="step-num">4</span><span class="step-label">Review</span></span></li>
+                    </ol>
+                    <div class="form-card" id="booking-card">
+                        <form id="booking-form" action="book.php" method="POST" novalidate>
+                            <input type="hidden" id="appointment_date" name="appointment_date">
+                            <input type="hidden" id="appointment_time" name="appointment_time">
+
+                            <section class="wizard-step" data-step="1">
+                                <h2 tabindex="-1">Who's coming in?</h2>
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label for="pet_name">Pet's name <span class="req">*</span></label>
+                                        <input type="text" id="pet_name" name="pet_name" data-label="Pet's name" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="pet_species">Species <span class="req">*</span></label>
+                                        <select id="pet_species" name="pet_species" data-label="Species" required>
+                                            <option value="">Choose one</option>
+                                            <option>Dog</option>
+                                            <option>Cat</option>
+                                            <option>Rabbit</option>
+                                            <option>Guinea pig</option>
+                                            <option>Bird</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <label for="pet_age">Age in years</label>
+                                        <input type="number" id="pet_age" name="pet_age" min="0" max="30" step="0.5" inputmode="decimal" data-label="Age">
+                                    </div>
+                                    <fieldset class="field">
+                                        <legend>First visit with us?</legend>
+                                        <div class="radio-row">
+                                            <label class="radio-pill"><input type="radio" name="first_visit" value="yes"><span>Yes</span></label>
+                                            <label class="radio-pill"><input type="radio" name="first_visit" value="no" checked><span>No</span></label>
+                                        </div>
+                                    </fieldset>
+                                    <div class="field">
+                                        <label for="owner_first">Your first name <span class="req">*</span></label>
+                                        <input type="text" id="owner_first" name="owner_first" autocomplete="given-name" data-label="First name" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="owner_last">Last name <span class="req">*</span></label>
+                                        <input type="text" id="owner_last" name="owner_last" autocomplete="family-name" data-label="Last name" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="owner_email">Email <span class="req">*</span></label>
+                                        <input type="email" id="owner_email" name="owner_email" autocomplete="email" data-label="Email" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="owner_phone">Phone <span class="req">*</span></label>
+                                        <input type="tel" id="owner_phone" name="owner_phone" autocomplete="tel" placeholder="(555) 123-4567" data-label="Phone" required>
+                                    </div>
+                                </div>
+                                <div class="wizard-nav">
+                                    <span></span>
+                                    <button type="button" class="btn" data-next>Next: service <span data-icon="arrow" class="icon--arrow"></span></button>
+                                </div>
+                            </section>
+
+                            <section class="wizard-step" data-step="2" hidden>
+                                <h2 tabindex="-1">What's the visit for?</h2>
+                                <fieldset class="field">
+                                    <legend class="sr-only">Service</legend>
+                                    <div class="option-grid" id="service-options"></div>
+                                </fieldset>
+                                <h3>Preferred vet</h3>
+                                <fieldset class="field">
+                                    <legend class="sr-only">Vet</legend>
+                                    <div class="option-grid" id="vet-options"></div>
+                                </fieldset>
+                                <div class="wizard-nav">
+                                    <button type="button" class="btn btn--ghost" data-back><span data-icon="back"></span>Back</button>
+                                    <button type="button" class="btn" data-next>Next: date &amp; time <span data-icon="arrow" class="icon--arrow"></span></button>
+                                </div>
+                            </section>
+
+                            <section class="wizard-step" data-step="3" hidden>
+                                <h2 tabindex="-1">Pick a day and time</h2>
+                                <div class="date-strip" id="date-strip" role="group" aria-label="Choose a day"></div>
+                                <div id="slot-wrap" aria-live="polite"></div>
+                                <p class="field-error" id="slot-error" role="alert"></p>
+                                <div class="wizard-nav">
+                                    <button type="button" class="btn btn--ghost" data-back><span data-icon="back"></span>Back</button>
+                                    <button type="button" class="btn" data-next>Next: review <span data-icon="arrow" class="icon--arrow"></span></button>
+                                </div>
+                            </section>
+
+                            <section class="wizard-step" data-step="4" hidden>
+                                <h2 tabindex="-1">Check the details</h2>
+                                <div id="review"></div>
+                                <div class="radio-row">
+                                    <button type="button" class="btn btn--ghost btn--sm" data-edit="1">Edit pet &amp; owner</button>
+                                    <button type="button" class="btn btn--ghost btn--sm" data-edit="2">Edit service</button>
+                                    <button type="button" class="btn btn--ghost btn--sm" data-edit="3">Edit time</button>
+                                </div>
+                                <div class="field">
+                                    <label for="visit_notes">Anything the vet should know?</label>
+                                    <textarea id="visit_notes" name="visit_notes" placeholder="Symptoms, how long it's been going on, current medications"></textarea>
+                                </div>
+                                <div class="field">
+                                    <label class="checkbox"><input type="checkbox" id="consent" name="consent" required data-message="Please agree to the cancellation policy to book.">
+                                        <span>I understand appointments cancelled less than 24 hours ahead may have a $25 fee.</span></label>
+                                </div>
+                                <div class="wizard-nav">
+                                    <button type="button" class="btn btn--ghost" data-back><span data-icon="back"></span>Back</button>
+                                    <button type="submit" class="btn btn--orange">Confirm booking <span data-icon="check"></span></button>
+                                </div>
+                            </section>
+                        </form>
+                    </div>
+                </div>
+
+                <aside class="summary-card" aria-label="Booking summary">
+                    <h3><span data-icon="receipt"></span>Your visit</h3>
+                    <dl class="summary-list">
+                        <div><dt>Pet</dt><dd id="sum-pet" class="empty">Not chosen yet</dd></div>
+                        <div><dt>Owner</dt><dd id="sum-owner" class="empty">Not chosen yet</dd></div>
+                        <div><dt>Service</dt><dd id="sum-service" class="empty">Not chosen yet</dd></div>
+                        <div><dt>Vet</dt><dd id="sum-vet">Any available vet</dd></div>
+                        <div><dt>When</dt><dd id="sum-when" class="empty">Not chosen yet</dd></div>
+                    </dl>
+                    <div class="summary-total"><span>Starting price</span><strong id="sum-total">—</strong></div>
+                    <p class="summary-note">You pay after the visit. Your vet will confirm the final cost before any extra treatment.</p>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">
+                        <span class="logo-mark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.2" cy="5.2" r="2.2"/><circle cx="14.8" cy="5.2" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/><path d="M12 11.5c-2.6 0-5.8 3.2-5.8 5.8 0 1.8 1.4 2.7 2.9 2.7 1.3 0 1.9-.7 2.9-.7s1.6.7 2.9.7c1.5 0 2.9-.9 2.9-2.7 0-2.6-3.2-5.8-5.8-5.8Z"/></svg></span>
+                        <span class="logo-text"><strong>PetHome</strong><small>Veterinary Clinic</small></span>
+                    </a>
+                    <p>Primary care, dentistry, surgery and urgent visits for dogs, cats and small pets in Long Island City.</p>
+                </div>
+                <div>
+                    <h4>Clinic</h4>
+                    <ul>
+                        <li><a href="services.html">Services &amp; prices</a></li>
+                        <li><a href="team.html">Our vets</a></li>
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Clients</h4>
+                    <ul>
+                        <li><a href="book.html">Book a visit</a></li>
+                        <li><a href="portal.html">My Pets portal</a></li>
+                        <li><a href="portal.html#vaccines">Vaccine records</a></li>
+                        <li><a href="portal.html#billing">Pay a bill</a></li>
+                        <li><a href="login.html">Sign in</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Pet health tips</h4>
+                    <p style="color:var(--muted);font-size:.92rem">One short email a month: vaccine reminders, seasonal hazards, clinic news.</p>
+                    <form id="newsletter-form" class="newsletter-form" action="subscribe.php" method="POST" novalidate>
+                        <label class="sr-only" for="newsletter_email">Email address</label>
+                        <input type="email" id="newsletter_email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                        <button class="btn btn--sm" type="submit">Subscribe</button>
+                    </form>
+                    <p class="newsletter-msg" role="status" aria-live="polite"></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span data-year>2026</span> PetHome Veterinary Clinic</span>
+                <span>Urgent line: <strong data-emergency>(999) 999-9999</strong></span>
+            </div>
+            <p class="footer-note">Student project for MAC 272 Web Development 2, Prof. Samia Alblwi. PetHome is not a real veterinary clinic.</p>
+        </div>
+    </footer>
+</body>
+</html>
